@@ -2,7 +2,7 @@
 
 This repository contains all the scripts and code for reproducing the analysis from my Final Degree Project. 
 
-#### Quick Links
+### Quick Links
 
 - Mouse Atlas paper: Pijuan et al. 2019 [Nature](https://www.nature.com/articles/s41586-019-0933-9).
 
