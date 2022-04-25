@@ -12,11 +12,20 @@ This repository contains all the scripts and code for reproducing the analysis f
 
 - Seurat
 - ggplot2
-- pheatmap
+- reshape
+- data.table
+- magrittr
+- cytobox
+- pvclust
 - gridExtra
-- Matrix
-- tidyverse
-- shape
-- umap
-- qlcMatrix
-- ggrepel
+- ggpubr
+- rstatix
+- factoextra
+- FactoMineR
+- mclust
+- dendextend
+- Cairo
+- snow
+- colourvalues
+- dplyr
+- tibble
