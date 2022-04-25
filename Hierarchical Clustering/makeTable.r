@@ -28,3 +28,6 @@ df <- rownames_to_column(df, "sample")
 
 print("SAVING")
 write.table(df, "table.txt")
+
+celltypes <- unique(df$celltype)
+saveRDS(celltypes, file = "celltypes.rds")
