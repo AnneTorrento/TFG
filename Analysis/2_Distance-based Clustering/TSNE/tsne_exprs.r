@@ -1,3 +1,4 @@
+.libPaths("/gpfs0/biores/users/mishmarlab/Anne/R-3.6.3/library")
 library(Seurat)
 library(ggplot2)
 library(data.table)
@@ -38,3 +39,4 @@ print("CREATING PDF")
 pdf(file = "tSNE_exprs.pdf", 8, 130)
 CombinePlots(plot1, ncol = 1)
 dev.off()
+
