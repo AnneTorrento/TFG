@@ -24,6 +24,7 @@ There are two folders:
 - gridExtra
 - ggpubr
 - rstatix
+sdsd
 - factoextra
 - FactoMineR
 - mclust
