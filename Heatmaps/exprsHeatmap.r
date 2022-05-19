@@ -22,6 +22,6 @@ for (i in 1:length(obj.list)){
 }
 
 print("CREATING PDF")
-pdf(file = "heatmap_Celltypes_cellnames.pdf", 8, 130)
+pdf(file = "Heatmaps.pdf", 8, 130)
 CombinePlots(plot1, ncol = 1, legend = "none")
 dev.off()
