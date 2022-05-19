@@ -1,6 +1,7 @@
 # Investigating the Single Cell Co-Regulation of Mito-Nuclear Genes across Mouse Embryonic Development
 
 This repository contains all the scripts and code for reproducing the analysis from my Final Degree Project. 
+
 There are two folders:
   1. "Data" contains the sripts to get the processed data.
   2. "Analysis" contains scripts used to do the analysis, including plots.
