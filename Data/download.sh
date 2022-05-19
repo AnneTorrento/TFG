@@ -14,6 +14,7 @@ confirm() {
 }
 
 confirm "Download Atlas data? [y/N]" && curl https://content.cruk.cam.ac.uk/jmlab/atlas_data.tar.gz > atlas_data.tar.gz
+tar xzf atlas_data.tar.gz && zip atlas_data.zip $(tar tf atlas_data.tar.gz)
 
-# arrayexpress link below:
+# arrayexpress link:
 # https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-6967/E-MTAB-6967.processed.1.zip
