@@ -17,25 +17,14 @@ filtermitozero <- function(ob,n=0,genes=mito.genes){
   return(ob)
 }
 
-#Protein-coding mitochondrial genes
 features <- c("mt-Cytb", "mt-Nd1", "mt-Nd2", "mt-Nd3", "mt-Nd4", "mt-Nd4l", "mt-Nd5", "mt-Nd6", "mt-Atp6", "mt-Atp8", "mt-Co1", "mt-Co2", "mt-Co3")
-
-#Protein-coding mitochondrial genes with long poly-A tail
 features_LongPolyA <- c("mt-Cytb", "mt-Nd1", "mt-Nd2", "mt-Nd3", "mt-Nd4", "mt-Nd5", "mt-Atp6", "mt-Co1", "mt-Co2", "mt-Co3")
 
 
 ####################################################################################
 print("PART 1: READING RAW DATA")
+load("1atlas_raw.RData")
 
-data_dir <- "../E-MTAB-6967.processed.1/atlas_data/atlas"
-list.files(data_dir)
-
-atlas.data <- Read10X(data.dir = data_dir)
-atlas <- CreateSeuratObject(counts = atlas.data, project = "bgu", min.cells = 3, min.features = 200)
-
-atlas[["percent.mt"]] <- PercentageFeatureSet(atlas, pattern = "^mt-")
-
-save(atlas.data, atlas, file = "1atlas_raw.RData")
 
 ####################################################################################
 print("PART 2: ADDING METADATA")
@@ -55,12 +44,11 @@ saveRDS(atlas, file = "ATLAS3_filtered.rds")
 
 
 ####################################################################################
-print("PART 4.1: REMOVING MIXED GASTRULATION CELLS")
+print("PART 4: REMOVING MIXED GASTRULATION CELLS")
 atlas <- subset(atlas, subset = stage != "mixed_gastrulation")
 
-print("PART 4.2: REMOVING <NA> CELLTYPE CELLS")
+print("PART 4: REMOVING <NA> CELLTYPE CELLS")
 atlas <- subset(atlas, subset = celltype != "<NA>")
-
 saveRDS(atlas, file = "ATLAS4.rds")
 
 
@@ -72,12 +60,12 @@ saveRDS(atlas, file = "ATLAS5_normalized.rds")
 
 ####################################################################################
 print("PART 6: SCALING DATA")
-atlas <- ScaleData(atlas)
+atlas <- ScaleData(atlas, features = rownames(atlas))
 saveRDS(atlas, file = "ATLAS6_scaled.rds")
 
 
 ####################################################################################
-print("PART 7: CREATING MODIFIABLE OBJECTS")
+print("PART 7: MAKING MODIFIABLE (easier to deal with) OBJECTS")
 Raw <- atlas@assays$RNA@counts
 obj <- CreateSeuratObject(counts = Raw, project = "bgu")
 obj@meta.data$celltype <- atlas@meta.data$celltype
@@ -86,7 +74,7 @@ obj@meta.data$stage <- atlas@meta.data$stage
 obj <- NormalizeData(obj)
 saveRDS(obj, file = "obj_normalized.rds")
 
-obj <- ScaleData(obj)
+obj <- ScaleData(obj, features = rownames(obj))
 saveRDS(obj, file = "obj_scaled.rds")
 
 
